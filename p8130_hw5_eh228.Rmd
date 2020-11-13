@@ -52,15 +52,13 @@ The test statistic is computed, with a continuity correction, one of two ways. W
 
 With no ties (referring to two equally ranked values once the values are listed), the test statistic is
 
-$$
-T=\frac{\left|T_{+}-\frac{n^{*}\left(n^{*}+1\right)}{4}\right|-\frac{1}{2}}{\sqrt{n^{*}\left(n^{*}+1\right)\left(2 n^{*}+1\right) / 24}}
-$$
+\(T=\frac{\left|T_{1}-\frac{n_{1}\left(n_{1}+n_{2}+1\right)}{2}\right|-\frac{1}{2}}{\sqrt{\left(n_{1} n_{2} / 12\right)\left(n_{1}+n_{2}+1\right)}}\)
 
 and with ties, the test statistic is
 
-$$
-T=\frac{\left|T_{+}-\frac{n^{*}\left(n^{*}+1\right)}{4}\right|-\frac{1}{2}}{\sqrt{\frac{n^{*}\left(n^{*}+1\right)\left(2 n^{*}+1\right)}{24}-\sum_{i=1}^{g}\left(t_{i}^{3}-t_{i}\right) / 48}}
-$$
+\(T=\frac{\left|T_{1}-\frac{n_{1}\left(n_{1}+n_{2}+1\right)}{2}\right|-\frac{1}{2}}{\sqrt{\left(n_{1} n_{2} / 12\right)\left[\left(n_{1}+n_{2}+1\right)-\sum_{i=1}^{g} t_{i}\left(t_{i}^{2}-1\right) /\left(n_{1}+n_{2}\right)\left(n_{1}+n_{2}-1\right)\right]}}\)
+
+where \(t_i\) refers to the number of observations with the same absolute value in the \(i^{th}\) group and \(g\) is the number of tied groups.
 
 In our case, the test statistic calculated by R is slightly different, since it does not by default add the  \(n_1(n_1+1)/2\) term (and is denoted by W).  
 
@@ -86,6 +84,9 @@ Let's come back to this.
 
 # Problem 3
 
+```{r}
+
+```
 
 
 
