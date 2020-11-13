@@ -1,0 +1,28 @@
+---
+title: "P8130 Biostatistical Methods Homework 5"
+author: "Emil Hafeez (eh2928)"
+date: "11/13/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library("animation")
+library(arsenal)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(knitr)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom")) #setup and establish the colors schemes for plits
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+# Problem 1
