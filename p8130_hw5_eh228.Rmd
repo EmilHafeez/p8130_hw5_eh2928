@@ -48,31 +48,45 @@ In order to assess the difference in IgM levels between the two smell factor gro
 
 \(H_0 = \) the medians of the two groups' IgM levels are equal, and \(H_A = \) the medians of the two groups' IgM levels are not equal. The decision rule is that we reject \(H_0 = \) if \(T > z_{1-(\alpha/2)} \). 
 
-The test statistic is computed, with a continuity correction, one of two ways; with no ties, the test statistic is 
+The test statistic is computed, with a continuity correction, one of two ways. We first combine the data from the two groups, order the values from lowest to highest, assign ranks to the individual values (1 to n), and if ties, assign the average rank. Then, select a group and compute the sum of ranks \(T_1\) for the first group, and then use the appropriate test statistic formula. 
+
+With no ties (referring to two equally ranked values once the values are listed), the test statistic is
+
+$$
+T=\frac{\left|T_{+}-\frac{n^{*}\left(n^{*}+1\right)}{4}\right|-\frac{1}{2}}{\sqrt{n^{*}\left(n^{*}+1\right)\left(2 n^{*}+1\right) / 24}}
+$$
 
 and with ties, the test statistic is
 
+$$
+T=\frac{\left|T_{+}-\frac{n^{*}\left(n^{*}+1\right)}{4}\right|-\frac{1}{2}}{\sqrt{\frac{n^{*}\left(n^{*}+1\right)\left(2 n^{*}+1\right)}{24}-\sum_{i=1}^{g}\left(t_{i}^{3}-t_{i}\right) / 48}}
+$$
 
+In our case, the test statistic calculated by R is slightly different, since it does not by default add the  \(n_1(n_1+1)/2\) term (and is denoted by W).  
 
+The p-value under the normal approximation, with \(n_1\) and \(n_2\) \(\geq 10\) is described by \(2 * [1 -\Phi(T)] \). 
 
+```{r wilcoxon rank-sum}
+antibodies_df2 =
+  antibodies_df %>% 
+  pivot_wider(
+		names_from = Smell,
+		values_from = Antibody_IgM
+	)
 
-The p-value: The p-value is described by \(2 * [1 -\Phi(T)] \). 
-
-interpret in context
-
-Comment on the differences between the groups (ignoring unanswered and missing values)
-
-
-```{r}
-
+wilcox.test(antibodies_df2$Normal, antibodies_df2$Altered, mu = 0)
 ```
 
+In context, and ignoring missing values and the unanswered smell category, we find evidence to reject the null hypothesis and conclude that the true location shift between the Normal and Altered smell categories is not equal to zero (in other words, the median IgM values are different for the two groups). 
 
-Given the non-normal distributions, now you are asked to use an alternative, non-parametric test
-to assess and comment on the difference in Ig-M levels between the two groups (please ignore
-unanswered and missing values). You can use R to perform the calculations, but make sure you
-state test that you used, the hypotheses, test statistic, p-value and provide interpretation in the
-context of the problem.
+
+# Problem 2
+
+Let's come back to this.
+
+# Problem 3
+
+
 
 
 
