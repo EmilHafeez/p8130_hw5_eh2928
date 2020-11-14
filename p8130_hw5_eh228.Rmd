@@ -144,6 +144,11 @@ In our context, the 95% confidence interval for the true slope is equal to \(0.0
 
 ```{r}
 #start here
+
+reg_predicted = predict(reg_admit, level = 0.95)
+summary(reg_admit)
+summary(reg_predicted)
+
 ```
 
 Obtain a 95% interval estimate of the mean freshman GPA for students whose ACT test score
@@ -151,9 +156,6 @@ is 28. Interpret your confidence interval. Hint: Use R function predict().
 
 
 
-
-
-
-
+Prediction interval will be wider than the 
 
 
