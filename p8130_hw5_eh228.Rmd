@@ -86,7 +86,7 @@ Let's come back to this.
 
 # Problem 3
 
-## Part 1
+## Problem 3 Part 1
 
 Load the data and plot it.
 ```{r}
@@ -130,9 +130,17 @@ abline(reg_admit,lwd=2,col=2)
 
 ```
 
-## Part 2
+## Problem 3 Part 2
 
-The basic regression model follows the form \(Y_i = \beta_0 + \beta_1X_i + \epsilon_i\)
+The basic regression model follows the form \(Y_i = \beta_0 + \beta_1X_i + \epsilon_i\) and the estimated regression model is given by \(\widehat{Y} = \widehat{\beta_0} + \widehat{\beta_1}X_i, i = 1,2,3...n\). In our context, this means that the estimated GPA value is equal to the sum of the intercept \(\beta_0\) and the estimated beta one times the student's ACT score, such that \(\widehat{GPA} = 2.11405 + 0.03883 \cdot ACT\).
+
+## Problem 3 Part 3
+
+Obtain a 95% confidence interval for β1. Interpret your confidence interval. Does it include
+zero? Why might the director of admissions be interested in whether the confidence interval
+includes zero? (2.5p)
+
+The 95% confidence interval for the true slope 
 
 
 

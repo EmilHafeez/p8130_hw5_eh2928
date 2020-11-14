@@ -1,0 +1,391 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={P8130 Biostatistical Methods Homework 5},
+  pdfauthor={Emil Hafeez (eh2928)},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{P8130 Biostatistical Methods Homework 5}
+\author{Emil Hafeez (eh2928)}
+\date{11/13/2020}
+
+\begin{document}
+\maketitle
+
+\hypertarget{problem-1}{%
+\section{Problem 1}\label{problem-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Read the CSV data into a dataframe}
+\NormalTok{antibodies_df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"./data/Antibodies.csv"}\NormalTok{)}
+
+\CommentTok{# Make AgeCategory, Smell, and Gender appopriate datatypes. Helps to ensure we know all unique values, too.}
+\KeywordTok{unique}\NormalTok{(antibodies_df}\OperatorTok{$}\NormalTok{AgeCategory)}
+\NormalTok{    antibodies_df <-}\StringTok{ }\NormalTok{antibodies_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{        }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{AgeCategory =} \KeywordTok{factor}\NormalTok{(AgeCategory, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"18-30"}\NormalTok{, }\StringTok{"31-50"}\NormalTok{, }\StringTok{"51+"}\NormalTok{) ))}
+\KeywordTok{unique}\NormalTok{(antibodies_df}\OperatorTok{$}\NormalTok{Smell)}
+\NormalTok{    antibodies_df <-}\StringTok{ }\NormalTok{antibodies_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{        }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Smell =} \KeywordTok{factor}\NormalTok{(Smell, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Normal"}\NormalTok{,}\StringTok{"Altered"}\NormalTok{, }\StringTok{"Unanswered/Others"}\NormalTok{)))}
+\NormalTok{    antibodies_df =}\StringTok{ }\NormalTok{antibodies_df }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Smell }\OperatorTok{!=}\StringTok{ "Unanswered/Others"}\NormalTok{)}
+\KeywordTok{unique}\NormalTok{(antibodies_df}\OperatorTok{$}\NormalTok{Gender)}
+\NormalTok{    antibodies_df <-}\StringTok{ }\NormalTok{antibodies_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{        }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Gender =} \KeywordTok{factor}\NormalTok{(Gender, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Male"}\NormalTok{,}\StringTok{"Female"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+In order to assess the difference in IgM levels between the two smell
+factor groups (Normal vs Altered) given non-normal distributions, we opt
+for a non-parametric test called the Wilcoxon Rank-Sum test. It's the
+nonparametric equivalent of the two-sample independent t-test, and
+examines if the medians of the two populations are equal versus not
+equal:
+
+\(H_0 =\) the medians of the two groups' IgM levels are equal, and
+\(H_A =\) the medians of the two groups' IgM levels are not equal. The
+decision rule is that we reject \(H_0 =\) if \(T > z_{1-(\alpha/2)}\).
+
+The test statistic is computed, with a continuity correction, one of two
+ways. We first combine the data from the two groups, order the values
+from lowest to highest, assign ranks to the individual values (1 to n),
+and if ties, assign the average rank. Then, select a group and compute
+the sum of ranks \(T_1\) for the first group, and then use the
+appropriate test statistic formula.
+
+With no ties (referring to two equally ranked values once the values are
+listed), the test statistic is
+
+\(T=\frac{\left|T_{1}-\frac{n_{1}\left(n_{1}+n_{2}+1\right)}{2}\right|-\frac{1}{2}}{\sqrt{\left(n_{1} n_{2} / 12\right)\left(n_{1}+n_{2}+1\right)}}\)
+
+and with ties, the test statistic is
+
+\(T=\frac{\left|T_{1}-\frac{n_{1}\left(n_{1}+n_{2}+1\right)}{2}\right|-\frac{1}{2}}{\sqrt{\left(n_{1} n_{2} / 12\right)\left[\left(n_{1}+n_{2}+1\right)-\sum_{i=1}^{g} t_{i}\left(t_{i}^{2}-1\right) /\left(n_{1}+n_{2}\right)\left(n_{1}+n_{2}-1\right)\right]}}\)
+
+where \(t_i\) refers to the number of observations with the same
+absolute value in the \(i^{th}\) group and \(g\) is the number of tied
+groups.
+
+In our case, the test statistic calculated by R is slightly different,
+since it does not by default add the \(n_1(n_1+1)/2\) term (and is
+denoted by W).
+
+The p-value under the normal approximation, with \(n_1\) and \(n_2\)
+\(\geq 10\) is described by \(2 * [1 -\Phi(T)]\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{antibodies_df2 =}
+\StringTok{  }\NormalTok{antibodies_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot_wider}\NormalTok{(}
+        \DataTypeTok{names_from =}\NormalTok{ Smell,}
+        \DataTypeTok{values_from =}\NormalTok{ Antibody_IgM}
+\NormalTok{    )}
+
+\KeywordTok{wilcox.test}\NormalTok{(antibodies_df2}\OperatorTok{$}\NormalTok{Normal, antibodies_df2}\OperatorTok{$}\NormalTok{Altered, }\DataTypeTok{mu =} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  antibodies_df2$Normal and antibodies_df2$Altered
+## W = 5836, p-value = 0.01406
+## alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
+
+In context, and ignoring missing values and the unanswered smell
+category, we find evidence to reject the null hypothesis and conclude
+that the true location shift between the Normal and Altered smell
+categories is not equal to zero (in other words, the median IgM values
+are different for the two groups).
+
+\hypertarget{problem-2}{%
+\section{Problem 2}\label{problem-2}}
+
+Let's come back to this.
+
+\hypertarget{problem-3}{%
+\section{Problem 3}\label{problem-3}}
+
+\hypertarget{problem-3-part-1}{%
+\subsection{Problem 3 Part 1}\label{problem-3-part-1}}
+
+Load the data and plot it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gpa_df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"./data/GPA.csv"}\NormalTok{)}
+
+\KeywordTok{plot}\NormalTok{(gpa_df}\OperatorTok{$}\NormalTok{ACT, gpa_df}\OperatorTok{$}\NormalTok{GPA)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{p8130_hw5_eh228_files/figure-latex/unnamed-chunk-2-1.pdf}
+Test whether a linear association exists between ACT score (x) and GPA
+at the end of freshman year (Y).
+
+Let \(\alpha = 0.05\) and let \(\beta_1\) represent the true slope to be
+estimated.
+
+The null hypothesis is \(H_0: \beta_1 = \beta_{10}\) where
+\(\beta_{10} = 0\). The alternative hypothesis is
+\(H_A: \beta_1 \neq \beta_{10}\). In context, testing
+\(H_0:\beta_1 = 0\) examines whether a student's GPA at the end of
+freshman year can be predicted from the ACT test score.
+
+The test statistic follows the t distribution with n-2 degrees of
+freedom, such that
+
+\(t=\frac{\widehat{\beta_{1}}-\beta_{10}}{s e\left(\widehat{\beta_{1}}\right)} \sim t_{n-2}, \text { under } H_{0} = \frac{0.03883 - 0}{0.01277} = 3.040\)
+using degrees of freedom = \(n = 120, df = n-2\)
+
+The corresponding critical value is fixed by \(t_{n-2, 1-(\alpha/2)}\)
+and the decision rule is that we reject \(H_0\) if
+\(|t| > t_{n-2, 1-(\alpha/2)}\) and fail to reject \(H_0\) if
+\(|t| \leq t_{n-2, 1-(\alpha/2)}\). As such, the critical value is
+\(t_{118, 0.975} = 1.980272\).
+
+Therefore, \(|t| > t_{118, 0.975}\) using the 5\% significance level, we
+find evidence to reject the null hypothesis and conclude that there is a
+significant linear association between students' ACT scores and GPA at
+the end of freshman year.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reg_admit<-}\KeywordTok{lm}\NormalTok{(gpa_df}\OperatorTok{$}\NormalTok{GPA}\OperatorTok{~}\NormalTok{gpa_df}\OperatorTok{$}\NormalTok{ACT)}
+
+\CommentTok{# Summarize regression}
+\KeywordTok{summary}\NormalTok{(reg_admit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = gpa_df$GPA ~ gpa_df$ACT)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.74004 -0.33827  0.04062  0.44064  1.22737 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  2.11405    0.32089   6.588  1.3e-09 ***
+## gpa_df$ACT   0.03883    0.01277   3.040  0.00292 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.6231 on 118 degrees of freedom
+## Multiple R-squared:  0.07262,    Adjusted R-squared:  0.06476 
+## F-statistic:  9.24 on 1 and 118 DF,  p-value: 0.002917
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tidy}\NormalTok{(reg_admit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic       p.value
+##   <chr>          <dbl>     <dbl>     <dbl>         <dbl>
+## 1 (Intercept)   2.11      0.321       6.59 0.00000000130
+## 2 gpa_df$ACT    0.0388    0.0128      3.04 0.00292
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glance}\NormalTok{(reg_admit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 12
+##   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+##       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>
+## 1    0.0726        0.0648 0.623      9.24 0.00292     1  -113.  231.  239.
+## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Regression objects}
+\KeywordTok{names}\NormalTok{(reg_admit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "coefficients"  "residuals"     "effects"       "rank"         
+##  [5] "fitted.values" "assign"        "qr"            "df.residual"  
+##  [9] "xlevels"       "call"          "terms"         "model"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Get fitted.values}
+\NormalTok{reg_admit}\OperatorTok{$}\NormalTok{fitted.values}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        1        2        3        4        5        6        7        8 
+## 2.929419 2.657629 3.201209 2.968246 2.929419 3.317690 3.356517 3.162382 
+##        9       10       11       12       13       14       15       16 
+## 3.240036 3.123555 3.045900 3.278863 3.045900 3.045900 3.395344 3.162382 
+##       17       18       19       20       21       22       23       24 
+## 3.084727 3.317690 3.084727 2.890592 3.045900 2.929419 3.201209 3.162382 
+##       25       26       27       28       29       30       31       32 
+## 3.201209 3.123555 3.201209 2.968246 3.123555 2.929419 3.084727 2.735283 
+##       33       34       35       36       37       38       39       40 
+## 3.201209 3.123555 2.968246 3.045900 2.929419 3.278863 3.162382 3.123555 
+##       41       42       43       44       45       46       47       48 
+## 3.123555 3.278863 3.045900 3.123555 3.240036 3.045900 3.317690 2.696456 
+##       49       50       51       52       53       54       55       56 
+## 2.851765 2.812938 3.162382 2.735283 3.162382 3.123555 3.045900 3.278863 
+##       57       58       59       60       61       62       63       64 
+## 2.929419 2.890592 3.278863 3.240036 3.084727 3.007073 3.084727 3.007073 
+##       65       66       67       68       69       70       71       72 
+## 3.278863 2.929419 3.045900 3.356517 2.812938 3.007073 2.890592 3.007073 
+##       73       74       75       76       77       78       79       80 
+## 2.812938 2.812938 3.240036 2.890592 3.007073 3.123555 3.201209 3.434172 
+##       81       82       83       84       85       86       87       88 
+## 2.890592 2.890592 3.123555 3.356517 3.084727 3.162382 3.162382 3.240036 
+##       89       90       91       92       93       94       95       96 
+## 2.851765 2.929419 3.045900 3.162382 3.084727 2.812938 3.240036 3.045900 
+##       97       98       99      100      101      102      103      104 
+## 3.162382 2.929419 2.851765 2.812938 3.084727 2.812938 2.890592 3.356517 
+##      105      106      107      108      109      110      111      112 
+## 3.045900 3.472999 3.084727 3.201209 3.201209 3.084727 2.968246 3.278863 
+##      113      114      115      116      117      118      119      120 
+## 2.890592 2.890592 3.317690 2.890592 3.240036 3.201209 2.735283 3.201209
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Scatterplot and regression line overlaid}
+\KeywordTok{plot}\NormalTok{(gpa_df}\OperatorTok{$}\NormalTok{ACT, gpa_df}\OperatorTok{$}\NormalTok{GPA)}
+\KeywordTok{abline}\NormalTok{(reg_admit,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{col=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{p8130_hw5_eh228_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\hypertarget{problem-3-part-2}{%
+\subsection{Problem 3 Part 2}\label{problem-3-part-2}}
+
+The basic regression model follows the form
+\(Y_i = \beta_0 + \beta_1X_i + \epsilon_i\) and the estimated regression
+model is given by
+\(\widehat{Y} = \widehat{\beta_0} + \widehat{\beta_1}X_i, i = 1,2,3...n\).
+In our context, this means that the estimated GPA value is equal to the
+sum of the intercept \(\beta_0\) and the estimated beta one times the
+student's ACT score, such that
+\(\widehat{GPA} = 2.11405 + 0.03883 \cdot ACT\).
+
+\hypertarget{problem-3-part-3}{%
+\subsection{Problem 3 Part 3}\label{problem-3-part-3}}
+
+Obtain a 95\% confidence interval for β1. Interpret your confidence
+interval. Does it include zero? Why might the director of admissions be
+interested in whether the confidence interval includes zero? (2.5p)
+
+The 95\% confidence interval for the true slope
+
+\end{document}
