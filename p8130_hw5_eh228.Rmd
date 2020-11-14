@@ -136,11 +136,10 @@ The basic regression model follows the form \(Y_i = \beta_0 + \beta_1X_i + \epsi
 
 ## Problem 3 Part 3
 
-Obtain a 95% confidence interval for β1. Interpret your confidence interval. Does it include
-zero? Why might the director of admissions be interested in whether the confidence interval
-includes zero? (2.5p)
+The 95% confidence interval for the true slope \(\beta_1 \) is given by \(\widehat{\beta_1} \pm t_{n-2, 1-(\alpha/2)} \cdot se(\widehat{\beta_1}) \) 
 
-The 95% confidence interval for the true slope 
+where \(se(\widehat{\beta_1}) = \sqrt{MSE / \Sigma_{i=1}^n}(X_i - \overline{X})^2 \)
+
 
 
 
