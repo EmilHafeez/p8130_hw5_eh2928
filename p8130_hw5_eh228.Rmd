@@ -14,6 +14,8 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(knitr)
+library(broom)
+library(faraway)
 
 theme_set(theme_minimal() + theme(legend.position = "bottom")) #setup and establish the colors schemes for plits
 options(
@@ -84,9 +86,60 @@ Let's come back to this.
 
 # Problem 3
 
+## Part 1
+
+Load the data and plot it.
 ```{r}
+gpa_df <- read.csv("./data/GPA.csv")
+
+plot(gpa_df$ACT, gpa_df$GPA)
+```
+Test whether a linear association exists between ACT score (x) and GPA at the end of freshman year (Y). 
+
+Let \(\alpha = 0.05\) and let \(\beta_1\) represent the true slope to be estimated. 
+
+The null hypothesis is \(H_0: \beta_1 = \beta_{10}\) where \(\beta_{10} = 0\). The alternative hypothesis is \(H_A: \beta_1 \neq \beta_{10}\). In context, testing \(H_0:\beta_1 = 0\) examines whether a student's GPA at the end of freshman year can be predicted from the ACT test score.
+
+The test statistic follows the t distribution with n-2 degrees of freedom, such that
+
+\(t=\frac{\widehat{\beta_{1}}-\beta_{10}}{s e\left(\widehat{\beta_{1}}\right)} \sim t_{n-2}, \text { under } H_{0} = \frac{0.03883 - 0}{0.01277} = 3.040\) using degrees of freedom = \(n = 120, df = n-2\) 
+
+The corresponding critical value is fixed by \(t_{n-2, 1-(\alpha/2)}\) and the decision rule is that we reject \(H_0\) if \(|t| > t_{n-2, 1-(\alpha/2)}\) and fail to reject \(H_0\) if \(|t| \leq  t_{n-2, 1-(\alpha/2)}\). As such, the critical value is \(t_{118, 0.975} = 1.980272\).
+
+Therefore, \(|t| > t_{118, 0.975}\) using the 5% significance level, we find evidence to reject the null hypothesis and conclude that there is a significant linear association between students' ACT scores and GPA at the end of freshman year. 
+
+```{r}
+reg_admit<-lm(gpa_df$GPA~gpa_df$ACT)
+
+# Summarize regression
+summary(reg_admit)
+
+tidy(reg_admit)
+
+glance(reg_admit)
+
+# Regression objects
+names(reg_admit)
+
+# Get fitted.values
+reg_admit$fitted.values
+
+# Scatterplot and regression line overlaid
+plot(gpa_df$ACT, gpa_df$GPA)
+abline(reg_admit,lwd=2,col=2)
 
 ```
+
+## Part 2
+
+The basic regression model follows the form \(Y_i = \beta_0 + \beta_1X_i + \epsilon_i\)
+
+
+
+
+
+
+
 
 
 
