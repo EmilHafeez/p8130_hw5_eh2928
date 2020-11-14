@@ -136,13 +136,18 @@ The basic regression model follows the form \(Y_i = \beta_0 + \beta_1X_i + \epsi
 
 ## Problem 3 Part 3
 
-The 95% confidence interval for the true slope \(\beta_1 \) is given by \(\widehat{\beta_1} \pm t_{n-2, 1-(\alpha/2)} \cdot se(\widehat{\beta_1}) \) 
+The 95% confidence interval for the true slope \(\beta_1 \) is given by \(\widehat{\beta_1} \pm t_{n-2, 1-(\alpha/2)} \cdot se(\widehat{\beta_1}) \)where \(se(\widehat{\beta_1}) = \sqrt{MSE / \Sigma_{i=1}^n}(X_i - \overline{X})^2 \). 
 
-where \(se(\widehat{\beta_1}) = \sqrt{MSE / \Sigma_{i=1}^n}(X_i - \overline{X})^2 \)
+In our context, the 95% confidence interval for the true slope is equal to \(0.03883 \pm 1.980272 \cdot 0.01277 = (0.06412, 0.01354)\). This confidence interval does not include 0. The Director of Admissions may be interested in whether this confidence interval includes 0 because 0 is the null value. As it stands, with 95% confidence we estimate that the student GPA score increases by between (0.06412, 0.01354) points for each additional ACT point scored priorly. If the interval were to include 0, we may suspect that the true increase in student GPA score per additional ACT points may include 0, which is to say that the ACT may have no utility informing our admissions process. Perhaps there is other evidence we may consider that informs whether we retain ACT requirements, too, though. 
 
+## Problem 3 Part 4
 
+```{r}
+#start here
+```
 
-
+Obtain a 95% interval estimate of the mean freshman GPA for students whose ACT test score
+is 28. Interpret your confidence interval. Hint: Use R function predict().
 
 
 
