@@ -82,7 +82,65 @@ In context, and ignoring missing values and the unanswered smell category, we fi
 
 # Problem 2
 
-Let's come back to this.
+## Problem 2 Part 1
+
+\(L\left(\mu, \sigma^{2} \mid Y\right)=\prod_{i=1}^{n} \frac{1}{\sqrt{2 \pi \sigma^{2}}} \cdot e^{-\frac{\left(Y_{i}-\mu\right)^{2}}{2 \sigma^{2}}}\)
+
+\(L\left(\beta_{0}, \beta_{1}, \sigma^{2}\right)=\prod_{i=1}^{n} \frac{1}{\sqrt{2 \pi \sigma^{2}}} \cdot e^{-\frac{\left(Y_{i}-\beta_{0}-\beta_{1} X_{i}\right)^{2}}{2 \sigma^{2}}}=\left(2 \pi \sigma^{2}\right)^{-n / 2} \cdot e^{\frac{-\sum_{i=1}^{n}\left(Y_{i}-\beta_{0}-\beta_{1} X_{i}\right)^{2}}{2 \sigma^{2}}}\)
+
+\(\begin{array}{l}
+\ln L\left(\beta_{0}, \beta_{1}, \sigma^{2}\right)=\log \left[\left(2 \pi \sigma^{2}\right)^{-\frac{n}{2}} \cdot e^{\left.\frac{-\sum_{i=1}^{n}\left(Y_{i}-\beta_{0}-\beta_{1} X_{i}\right)^{2}}{2 \sigma^{2}}\right]}\right. \\
+\ln L\left(\beta_{0}, \beta_{1}, \sigma^{2}\right)=-\frac{n}{2} \log (2 \pi)-n \log (\sigma)-\sum_{i=1}^{n} \frac{\left(Y_{i}-\beta_{0}-\beta_{1} X_{i}\right)^{2}}{2 \sigma^{2}}
+\end{array}\)
+
+\(\ln L\left(\beta_{0}, \beta_{1}, \sigma^{2}\right)=\)
+
+\(\begin{array}{l}
+\frac{d}{d\beta_1} ln(\beta_0, \beta_1,\sigma) = -\frac{1}{2 \sigma^{2}} \frac{d}{d \beta_1} \sum_{i=1}^{n}\left(y_{i}-\beta_{0}-\beta{1}\right)^{2} \\
+=\frac{1}{\sigma^{2}} \sum_{i=1}^{n}\left(y_{i}-\beta_{0}-\beta{1}\right)
+\end{array}\)
+
+\(0 = \frac{1}{\sigma^{2}} \Sigma_{i=1}^n(Y_i - \beta_1)\)
+
+\(\beta_1 = \frac{1}{n} \Sigma_{i=1}^n(Y_i - \beta_1)\)
+
+\(=\frac{cov{(X Y)}}{var({X})}\)
+
+Segmented
+
+\(\hat\beta_0 = \bar{y} - \hat\beta_1\bar{x}\)
+
+
+/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+Let's try that again. 
+
+\(\begin{array}{l}
+\mathrm{SSE}=\sum_{i}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2} \\
+=\sum_{i}^{n}\left[y_{i}-\left(\beta_{1} x_{i}+\beta_{0}\right)\right]^{2} \\
+=\sum_{i}^{n}\left(y_{i}-\beta_{1} x_{i}-\beta_{0}\right)^{2}
+\end{array}\)
+
+\(
+\begin{array}{l}
+\frac{\partial}{\partial \beta_{0}} \mathrm{SSE}=-2 \sum_{i}^{n}\left(y_{i}-\beta_{1} x_{i}-\beta_{0}\right) \\
+=-2 \sum_{i}^{n} y_{i}+2 \beta_{1} \sum_{i}^{n} x_{i}+2 n \beta_{0} \\
+=-2 n \bar{y}+2 \beta_{1} n \bar{x}+2 n \beta_{0}
+\end{array}\) and then solving for the intercept when we set the derivative equal to 0 = 
+\(\beta_0 = \bar{y} - \beta_1\bar{x}\)
+
+"We used the fact that the sum over the values of a variable is equal to the mean of those values multiplied by how many values we have."
+
+Then, we can utilize this result to find the slope \(\beta_1\) by using the intercept solution and isolating the slop term, such that
+
+\(\begin{array}{l}
+\frac{\partial}{\partial \beta_{1}} \mathrm{SSE}=-2 \sum_{i}^{n}\left(y_{i}-\beta_{1} x_{i}-\beta_{0}\right) x_{i} \\
+=-2 \sum_{i}^{n} x_{i} y_{i}+2 \beta_{1} \sum_{i}^{n} x_{i}^{2}+2 \beta_{0} \sum_{i}^{n} x_{i} \\
+=-2 \sum_{i}^{n} x_{i} y_{i}+2 \beta_{1} \sum_{i}^{n} x_{i}^{2}+2\left(\bar{y}-\beta_{1} \bar{x}\right) \sum_{i}^{n} x_{i} \\
+=-2 \sum_{i}^{n} x_{i} y_{i}+2 \beta_{1} \sum_{i}^{n} x_{i}^{2}+2 \bar{y} \sum_{i}^{n} x_{i}-2 \beta_{1} \bar{x} \sum_{i}^{n} x_{i} \\
+=2 \beta_{1} \sum_{i}^{n} x_{i}^{2}-2 \beta_{1} \bar{x} \sum_{i}^{n} x_{i}+2 \bar{y} \sum_{i}^{n} x_{i}-2 \sum_{i}^{n} x_{i} y_{i} \\
+=2 \beta_{1}\left(\sum_{i}^{n} x_{i}^{2}-\bar{x} \sum_{i}^{n} x_{i}\right)+2 \bar{y} \sum_{i}^{n} x_{i}-2 \sum_{i}^{n} x_{i} y_{i}
+\end{array}\)
+
 
 # Problem 3
 
@@ -109,7 +167,7 @@ The corresponding critical value is fixed by \(t_{n-2, 1-(\alpha/2)}\) and the d
 Therefore, \(|t| > t_{118, 0.975}\) using the 5% significance level, we find evidence to reject the null hypothesis and conclude that there is a significant linear association between students' ACT scores and GPA at the end of freshman year. 
 
 ```{r}
-reg_admit<-lm(gpa_df$GPA~gpa_df$ACT)
+reg_admit<-lm(gpa_df$GPA ~ gpa_df$ACT)
 
 # Summarize regression
 summary(reg_admit)
@@ -118,11 +176,6 @@ tidy(reg_admit)
 
 glance(reg_admit)
 
-# Regression objects
-names(reg_admit)
-
-# Get fitted.values
-reg_admit$fitted.values
 
 # Scatterplot and regression line overlaid
 plot(gpa_df$ACT, gpa_df$GPA)
@@ -142,20 +195,31 @@ In our context, the 95% confidence interval for the true slope is equal to \(0.0
 
 ## Problem 3 Part 4
 
-```{r}
-#start here
+The 95% confidence interval for the mean freshman GPA for students whose ACT score is 28 is calculated as below. 
 
-reg_predicted = predict(reg_admit, level = 0.95)
-summary(reg_admit)
-summary(reg_predicted)
+$$
+\begin{array}{c}
+\widehat{\beta_{0}}+\widehat{\beta_{1}} X_{h} \pm t_{n-2,1-\alpha / 2} \cdot \operatorname{se}\left(\widehat{\beta_{0}}+\widehat{\beta_{1}} X_{h}\right) \\
+\operatorname{se}\left(\widehat{\beta_{0}}+\widehat{\beta_{1}} X_{h}\right)=\sqrt{M S E\left\{\frac{1}{n}+\left[\left(X_{h}-\bar{X}\right)^{2} / \sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)^{2}\right]\right\}}
+\end{array}
+$$
+
+```{r}
+ACT_to_predict_from = data.frame(ACT = 28)
+
+predict(reg_admit, data.frame(ACT_to_predict_from))
 
 ```
 
-Obtain a 95% interval estimate of the mean freshman GPA for students whose ACT test score
-is 28. Interpret your confidence interval. Hint: Use R function predict().
+## Problem 3 Part 5
 
+$$
+\begin{array}{c}
+\widehat{\beta_{0}}+\widehat{\beta_{1}} X_{h} \pm t_{n-2,1-\alpha / 2} \cdot \operatorname{se}\left(\widehat{\beta_{0}}+\widehat{\beta_{1}} X_{h}\right) \\
+\operatorname{se}\left(\widehat{\beta_{0}}+\widehat{\beta_{1}} X_{h}\right)=\sqrt{M S E\left\{\frac{1}{n}+\left[\left(X_{h}-\bar{X}\right)^{2} / \sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)^{2}\right] + 1\right\}}
+\end{array}
+$$
 
+## Problem 3 Part 6
 
-Prediction interval will be wider than the 
-
-
+Prediction interval will always be wider than the CI, because it has an additional term to account for (the non-normally distributed error term). This is visible in the above formulas, where the confidence interval and prediction interval are calculated using similar formats, but the standard errors are quite different: the prediction interval focuses on one specific new value of \(Y_h\), and since we do not calculate an expected mean the errors do not reduce to 0, and so the SE formula for prediction includes a \(+1\) in the denominator, widening the interval overall.
