@@ -233,7 +233,7 @@ ACT_to_predict_from = data.frame(ACT = 28)
 predict(reg_admit, ACT_to_predict_from, interval = "prediction")
 ```
 
-we predict with 95% confidence that Anne's freshman year GPA will be between 1.959355 and 4.443063, as predicted from her ACT test score of 28. 
+We predict with 95% confidence that Anne's freshman year GPA will be between 1.959355 and 4.443063, as predicted from her ACT test score of 28. 
 
 ## Problem 3 Part 6
 
