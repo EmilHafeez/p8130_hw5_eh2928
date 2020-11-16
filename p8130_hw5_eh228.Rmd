@@ -167,7 +167,7 @@ The corresponding critical value is fixed by \(t_{n-2, 1-(\alpha/2)}\) and the d
 Therefore, \(|t| > t_{118, 0.975}\) using the 5% significance level, we find evidence to reject the null hypothesis and conclude that there is a significant linear association between students' ACT scores and GPA at the end of freshman year. 
 
 ```{r}
-reg_admit<-lm(gpa_df$GPA ~ gpa_df$ACT)
+reg_admit<-lm(gpa_df$GPA ~ gpa_df$ACT, data = gpa_df)
 
 # Summarize regression
 summary(reg_admit)
@@ -195,7 +195,7 @@ In our context, the 95% confidence interval for the true slope is equal to \(0.0
 
 ## Problem 3 Part 4
 
-The 95% confidence interval for the mean freshman GPA for students whose ACT score is 28 is calculated as below. 
+The 95% confidence interval for the mean freshman GPA for students whose ACT score is 28 is given by: 
 
 $$
 \begin{array}{c}
@@ -205,13 +205,19 @@ $$
 $$
 
 ```{r}
+reg_admit <- lm(GPA ~ ACT, data = gpa_df)
+
 ACT_to_predict_from = data.frame(ACT = 28)
 
-predict(reg_admit, data.frame(ACT_to_predict_from))
+predict(reg_admit, ACT_to_predict_from, interval = "confidence")
 
 ```
 
+In context, this means that with 95% confidence we estimate the mean freshman GPA for students whose ACT scores are 28 to be between 3.061384 and 3.341033 (3.061384, 3.341033). 
+
 ## Problem 3 Part 5
+
+The 95% prediction interval for Anne's freshman GPA is calculated as below.
 
 $$
 \begin{array}{c}
@@ -219,6 +225,15 @@ $$
 \operatorname{se}\left(\widehat{\beta_{0}}+\widehat{\beta_{1}} X_{h}\right)=\sqrt{M S E\left\{\frac{1}{n}+\left[\left(X_{h}-\bar{X}\right)^{2} / \sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)^{2}\right] + 1\right\}}
 \end{array}
 $$
+```{r}
+reg_admit <- lm(GPA ~ ACT, data = gpa_df)
+
+ACT_to_predict_from = data.frame(ACT = 28)
+
+predict(reg_admit, ACT_to_predict_from, interval = "prediction")
+```
+
+we predict with 95% confidence that Anne's freshman year GPA will be between 1.959355 and 4.443063, as predicted from her ACT test score of 28. 
 
 ## Problem 3 Part 6
 
